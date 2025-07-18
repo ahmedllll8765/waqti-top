@@ -20,6 +20,7 @@ import FAQPage from './pages/FAQPage';
 import TermsPage from './pages/TermsPage';
 import PrivacyPage from './pages/PrivacyPage';
 import DashboardPage from './pages/DashboardPage';
+import AdminDashboardPage from './pages/AdminDashboardPage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
 import CreateServicePage from './pages/CreateServicePage';
 import MessagesPage from './pages/MessagesPage';
@@ -144,6 +145,8 @@ function AppContent() {
         return <PrivacyPage />;
       case 'dashboard':
         return <DashboardPage setActivePage={setActivePage} />;
+      case 'admin':
+        return <AdminDashboardPage setActivePage={setActivePage} />;
       case 'create-service':
         return <CreateServicePage setActivePage={setActivePage} />;
       case 'messages':
