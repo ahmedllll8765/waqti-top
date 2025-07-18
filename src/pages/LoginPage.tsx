@@ -175,6 +175,11 @@ const LoginPage: React.FC<LoginPageProps> = ({ setActivePage }) => {
           <p className="text-sm text-blue-800 mb-2 font-medium">{t('login.demo')}</p>
           <p className="text-xs text-blue-600">Email: demo@waqti.com</p>
           <p className="text-xs text-blue-600">Password: demo123456</p>
+          <div className="mt-2 pt-2 border-t border-blue-200">
+            <p className="text-xs text-blue-600 font-medium">Admin Access:</p>
+            <p className="text-xs text-blue-600">Email: admin@waqti.com</p>
+            <p className="text-xs text-blue-600">Password: admin123456</p>
+          </div>
         </div>
       </div>
     </div>

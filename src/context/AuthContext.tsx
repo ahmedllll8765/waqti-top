@@ -97,6 +97,21 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       setIsLoading(true);
       
+      // Check for admin demo login
+      if (email === 'admin@waqti.com' && password === 'admin123456') {
+        // Create mock admin user
+        setUser({
+          id: 'admin',
+          name: 'Admin User',
+          email: 'admin@waqti.com',
+          phone: '+971501234567',
+          balance: 1000,
+          joinedAt: new Date(),
+          avatar: 'https://randomuser.me/api/portraits/men/1.jpg'
+        });
+        return { success: true };
+      }
+      
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email.trim(),
         password

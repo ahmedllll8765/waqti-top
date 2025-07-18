@@ -198,16 +198,30 @@ const Header: React.FC<HeaderProps> = ({ activePage, setActivePage }) => {
           )}
           
           {isLoggedIn && (
-            <li className={`mx-2`}>
-              <button
-                onClick={() => handleNavClick('dashboard')}
-                className={`px-3 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all ${
-                  activePage === 'dashboard' ? 'bg-white bg-opacity-20' : ''
-                }`}
-              >
-                {t('nav.dashboard')}
-              </button>
-            </li>
+            <>
+              <li className={`mx-2`}>
+                <button
+                  onClick={() => handleNavClick('dashboard')}
+                  className={`px-3 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all ${
+                    activePage === 'dashboard' ? 'bg-white bg-opacity-20' : ''
+                  }`}
+                >
+                  {t('nav.dashboard')}
+                </button>
+              </li>
+              {user?.email === 'admin@waqti.com' && (
+                <li className={`mx-2`}>
+                  <button
+                    onClick={() => handleNavClick('admin')}
+                    className={`px-3 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all ${
+                      activePage === 'admin' ? 'bg-white bg-opacity-20' : ''
+                    }`}
+                  >
+                    Admin
+                  </button>
+                </li>
+              )}
+            </>
           )}
         </ul>
       </nav>
@@ -317,6 +331,18 @@ const Header: React.FC<HeaderProps> = ({ activePage, setActivePage }) => {
                     {t('nav.dashboard')}
                   </button>
                 </li>
+                {user?.email === 'admin@waqti.com' && (
+                  <li className="py-2">
+                    <button
+                      onClick={() => handleNavClick('admin')}
+                      className={`w-full text-left px-3 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all ${
+                        activePage === 'admin' ? 'bg-white bg-opacity-20' : ''
+                      }`}
+                    >
+                      Admin
+                    </button>
+                  </li>
+                )}
               </>
             )}
             
