@@ -11,6 +11,10 @@ import ContractsPaymentsPage from './pages/ContractsPaymentsPage';
 import WalletPage from './pages/WalletPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import EmailVerificationPage from './pages/EmailVerificationPage';
+import WelcomeWalkthroughPage from './pages/WelcomeWalkthroughPage';
+import EscrowManagementPage from './pages/EscrowManagementPage';
+import SavedSearchesPage from './pages/SavedSearchesPage';
 import ProviderRegistrationPage from './pages/ProviderRegistrationPage';
 import PhoneVerificationPage from './pages/PhoneVerificationPage';
 import ExpertiseVerificationPage from './pages/ExpertiseVerificationPage';
@@ -38,6 +42,8 @@ function AppContent() {
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   const [previousPage, setPreviousPage] = useState('services');
   const [verificationPhone, setVerificationPhone] = useState('');
+  const [showWalkthrough, setShowWalkthrough] = useState(false);
+  const [verificationEmail, setVerificationEmail] = useState('');
   const { isLoading } = useAuth();
 
   const handleServiceClick = (serviceId: string) => {
@@ -157,6 +163,12 @@ function AppContent() {
         return <BookingManagementPage setActivePage={setActivePage} />;
       case 'userProfile':
         return <UserProfilePage setActivePage={setActivePage} userId={selectedUserId || undefined} />;
+      case 'email-verification':
+        return <EmailVerificationPage setActivePage={setActivePage} email={verificationEmail} />;
+      case 'escrow-management':
+        return <EscrowManagementPage setActivePage={setActivePage} />;
+      case 'saved-searches':
+        return <SavedSearchesPage setActivePage={setActivePage} />;
       case 'serviceDetail':
         return selectedServiceId ? (
           <ServiceDetailPage 
@@ -187,6 +199,12 @@ function AppContent() {
     <div className="min-h-screen bg-gray-50">
       <Header activePage={activePage} setActivePage={setActivePage} />
       {renderPage()}
+      {showWalkthrough && (
+        <WelcomeWalkthroughPage
+          setActivePage={setActivePage}
+          onComplete={() => setShowWalkthrough(false)}
+        />
+      )}
     </div>
   );
 }

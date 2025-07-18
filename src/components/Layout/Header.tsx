@@ -105,6 +105,16 @@ const Header: React.FC<HeaderProps> = ({ activePage, setActivePage }) => {
               </li>
               <li className={`mx-2`}>
                 <button
+                  onClick={() => handleNavClick('saved-searches')}
+                  className={`px-3 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all ${
+                    activePage === 'saved-searches' ? 'bg-white bg-opacity-20' : ''
+                  }`}
+                >
+                  البحوث المحفوظة
+                </button>
+              </li>
+              <li className={`mx-2`}>
+                <button
                   onClick={() => handleNavClick('messages')}
                   className={`px-3 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all relative ${
                     activePage === 'messages' ? 'bg-white bg-opacity-20' : ''
@@ -221,6 +231,18 @@ const Header: React.FC<HeaderProps> = ({ activePage, setActivePage }) => {
                   </button>
                 </li>
               )}
+              {user?.email === 'admin@waqti.com' && (
+                <li className={`mx-2`}>
+                  <button
+                    onClick={() => handleNavClick('escrow-management')}
+                    className={`px-3 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all ${
+                      activePage === 'escrow-management' ? 'bg-white bg-opacity-20' : ''
+                    }`}
+                  >
+                    إدارة الضمان
+                  </button>
+                </li>
+              )}
             </>
           )}
         </ul>
@@ -303,6 +325,16 @@ const Header: React.FC<HeaderProps> = ({ activePage, setActivePage }) => {
                 </li>
                 <li className="py-2">
                   <button
+                    onClick={() => handleNavClick('saved-searches')}
+                    className={`w-full text-left px-3 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all ${
+                      activePage === 'saved-searches' ? 'bg-white bg-opacity-20' : ''
+                    }`}
+                  >
+                    البحوث المحفوظة
+                  </button>
+                </li>
+                <li className="py-2">
+                  <button
                     onClick={() => handleNavClick('notifications')}
                     className={`w-full text-left px-3 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all ${
                       activePage === 'notifications' ? 'bg-white bg-opacity-20' : ''
@@ -340,6 +372,18 @@ const Header: React.FC<HeaderProps> = ({ activePage, setActivePage }) => {
                       }`}
                     >
                       Admin
+                    </button>
+                  </li>
+                )}
+                {user?.email === 'admin@waqti.com' && (
+                  <li className="py-2">
+                    <button
+                      onClick={() => handleNavClick('escrow-management')}
+                      className={`w-full text-left px-3 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all ${
+                        activePage === 'escrow-management' ? 'bg-white bg-opacity-20' : ''
+                      }`}
+                    >
+                      إدارة الضمان
                     </button>
                   </li>
                 )}
