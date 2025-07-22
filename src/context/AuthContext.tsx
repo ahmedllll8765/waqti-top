@@ -127,6 +127,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
       if (data.user) {
         await fetchUserProfile(data.user.id);
+        // Check if user needs role selection
+        setActivePage('role-selection');
         return { success: true };
       }
 

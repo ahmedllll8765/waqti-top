@@ -16,8 +16,8 @@ import WelcomeWalkthroughPage from './pages/WelcomeWalkthroughPage';
 import EscrowManagementPage from './pages/EscrowManagementPage';
 import SavedSearchesPage from './pages/SavedSearchesPage';
 import ProviderRegistrationPage from './pages/ProviderRegistrationPage';
-import PhoneVerificationPage from './pages/PhoneVerificationPage';
-import ExpertiseVerificationPage from './pages/ExpertiseVerificationPage';
+import RoleSelectionPage from './pages/RoleSelectionPage';
+import FreelancerVerificationPage from './pages/FreelancerVerificationPage';
 import AboutPage from './pages/AboutPage';
 import SupportPage from './pages/SupportPage';
 import FAQPage from './pages/FAQPage';
@@ -41,9 +41,7 @@ function AppContent() {
   const [selectedFreelancerId, setSelectedFreelancerId] = useState<string | null>(null);
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   const [previousPage, setPreviousPage] = useState('services');
-  const [verificationPhone, setVerificationPhone] = useState('');
   const [showWalkthrough, setShowWalkthrough] = useState(false);
-  const [verificationEmail, setVerificationEmail] = useState('');
   const { isLoading } = useAuth();
 
   const handleServiceClick = (serviceId: string) => {
@@ -68,15 +66,6 @@ function AppContent() {
     setPreviousPage(activePage);
     setSelectedUserId(userId);
     setActivePage('userProfile');
-  };
-
-  const handlePhoneVerification = (phone: string) => {
-    setVerificationPhone(phone);
-    setActivePage('phone-verification');
-  };
-
-  const handleVerificationComplete = () => {
-    setActivePage('expertise-verification');
   };
 
   const goBack = () => {
@@ -127,18 +116,10 @@ function AppContent() {
         return <LoginPage setActivePage={setActivePage} />;
       case 'register':
         return <RegisterPage setActivePage={setActivePage} />;
-      case 'provider-register':
-        return <ProviderRegistrationPage setActivePage={setActivePage} onPhoneVerification={handlePhoneVerification} />;
-      case 'phone-verification':
-        return (
-          <PhoneVerificationPage
-            phone={verificationPhone}
-            onVerificationComplete={handleVerificationComplete}
-            setActivePage={setActivePage}
-          />
-        );
-      case 'expertise-verification':
-        return <ExpertiseVerificationPage setActivePage={setActivePage} />;
+      case 'role-selection':
+        return <RoleSelectionPage setActivePage={setActivePage} />;
+      case 'freelancer-verification':
+        return <FreelancerVerificationPage setActivePage={setActivePage} />;
       case 'about':
         return <AboutPage />;
       case 'support':
@@ -163,8 +144,6 @@ function AppContent() {
         return <BookingManagementPage setActivePage={setActivePage} />;
       case 'userProfile':
         return <UserProfilePage setActivePage={setActivePage} userId={selectedUserId || undefined} />;
-      case 'email-verification':
-        return <EmailVerificationPage setActivePage={setActivePage} email={verificationEmail} />;
       case 'escrow-management':
         return <EscrowManagementPage setActivePage={setActivePage} />;
       case 'saved-searches':
